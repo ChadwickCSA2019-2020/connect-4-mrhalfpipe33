@@ -41,7 +41,12 @@ public class MyAgent extends Agent {
    *
    */
   public void move() {
-
+	  // if middle column is empty, play middle 
+	  
+	  // for i can win or they can win
+	  // make a copy of the gameboard
+	  // drop in first column, see if won
+	  // check each column
   }
 
   /**
@@ -109,6 +114,20 @@ public class MyAgent extends Agent {
    * @return the column that would allow the agent to win.
    */
   public int iCanWin() {
+	 // make copy of board
+	 Connect4Game copyConnect4Game = new Connect4Game(myGame);
+	 // place in each column
+	 for (int i = 0, i <= 6, i++) {
+		 copyConnect4Game.moveOnColumn(i);
+		 
+		 // play in row
+		 // check if won
+		 // go to next row
+		 // check if won
+		 
+	 }
+	 }
+	 
     return 0;
   }
 
