@@ -86,7 +86,57 @@ public class MyAgentTest {
   
   // TODO: Write 2 test cases for testICanWinDiagonally
   
+  @Test
+  public void testICanWinDiagonallyNegativeSlope() {
+ MyAgent redAgent = new MyAgent(game, true);
+ MyAgent yellowAgent = new MyAgent(game, false);
+ game.clearBoard();
+ redAgent.moveOnColumn(3);
+      yellowAgent.moveOnColumn(3);
+      redAgent.moveOnColumn(2);
+      yellowAgent.moveOnColumn(1);
+      redAgent.moveOnColumn(1);
+      yellowAgent.moveOnColumn(4);
+      redAgent.moveOnColumn(4);
+      yellowAgent.moveOnColumn(2);
+      redAgent.moveOnColumn(2);
+      yellowAgent.moveOnColumn(1);
+      redAgent.moveOnColumn(2);
+      yellowAgent.moveOnColumn(5);
+      redAgent.moveOnColumn(3);
+      yellowAgent.moveOnColumn(1);
+     
+      assertEquals(1, redAgent.iCanWin());
+  }
   
+  
+  
+  @Test
+  public void testICanWinDiagonallyPositiveSlope() {
+	  MyAgent redAgent = new MyAgent(game, true);
+	  MyAgent yellowAgent = new MyAgent(game, false);
+	  game.clearBoard();
+	  redAgent.moveOnColumn(1);
+	  yellowAgent.moveOnColumn(2);
+	  redAgent.moveOnColumn(2);
+	  yellowAgent.moveOnColumn(3);
+	  redAgent.moveOnColumn(4);
+	  yellowAgent.moveOnColumn(3);
+	  redAgent.moveOnColumn(3);
+	  yellowAgent.moveOnColumn(4);
+	  redAgent.moveOnColumn(4);
+	  yellowAgent.moveOnColumn(0);
+	  
+	  assertEquals(4, redAgent.iCanWin());
+  }
+  
+  @Test
+  public void testICanWinDiagonally() {
+	  MyAgent redAgent = new MyAgent(game, true);
+	  MyAgent yellowAgent = new MyAgent(game, false);
+	  game.clearBoard();
+	  
+  }
 
   @Test
   public void testTheyCanWin() {
@@ -103,8 +153,43 @@ public class MyAgentTest {
 
   // TODO: Write testTheyCanWinHorizontally
 
+  @Test
+  public void testTheyCanWinHorizontallyBottomRow() {
+	  MyAgent redAgent = new MyAgent(game, true);
+	  MyAgent yellowAgent = new MyAgent(game, false);
+	  game.clearBoard();
+	  for (i = 1; i < 4; i++) {
+	  redAgent.moveOnColumn(i);
+      yellowAgent.moveOnColumn(i); 
+	  }
+	    
+      assertEquals(0, yellowAgent.theyCanWin());
+       
+  } 
+  
+  
   // TODO: Write testTheyCanWinDiagonally
 
+  @Test
+  public void testTheyCanWinDiagonallyPositiveSlope() {
+	  MyAgent redAgent = new MyAgent(game, true);
+	  MyAgent yellowAgent = new MyAgent(game, false);
+	  game.clearBoard();
+	  redAgent.moveOnColumn(1);
+	  yellowAgent.moveOnColumn(2);
+	  redAgent.moveOnColumn(2);
+	  yellowAgent.moveOnColumn(3);
+	  redAgent.moveOnColumn(4);
+	  yellowAgent.moveOnColumn(3);
+	  redAgent.moveOnColumn(3);
+	  yellowAgent.moveOnColumn(4);
+	  redAgent.moveOnColumn(4);
+	  yellowAgent.moveOnColumn(0);
+	  
+	  assertEquals(4, yellowAgent.theyCanWin());
+  } 
+  
+  
   // Tests you can win against a Beginner agent as Red
   @Test
   public void testRedWinningBeginnerAgent() {
