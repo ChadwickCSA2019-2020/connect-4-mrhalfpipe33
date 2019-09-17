@@ -41,7 +41,9 @@ public class MyAgent extends Agent {
    *
    */
   public void move() {
-
+    if (this.iCanWin() >=0) {
+      this.moveOnColumn(this.iCanWin);
+    }
   }
 
   /**
@@ -109,22 +111,26 @@ public class MyAgent extends Agent {
    * @return the column that would allow the agent to win.
    */
   public int iCanWin() {
-	//make a copy of board
-	  Connect4Game connect4GameCopy = new Connect4Game(myGame);
-	  //make a new agent
-	  MyAgent redAgent = new MyAgent(myGame, true);
-	  //place a token in each column
-	  for (int i = 0; i < 7; i++) {
-		  redAgent.moveOnColumn(i);
-		  // check if win 
-		 if (gameWon() != 'N') {
-			 int winnableColumn = i;
-		 }
-		  
-	  }
-	  //run game run method
-	  //get index of column 
-	  //move on that column
+    //make a copy of board
+    Connect4Game connect4GameCopy = new Connect4Game(myGame);
+    int winnableColumn = -1;
+    //make a new agent
+    MyAgent redAgent = new MyAgent(myGame, true);
+    //place a token in each column
+    for (int i = 0; i < 7; i++) {
+      redAgent.moveOnColumn(i);
+      // check if win 
+      if (connect4GameCopy.gameWon() != 'N') {
+        winnableColumn = i;
+        break;
+      }
+      // reset game board
+
+    }
+    return winnableColumn;
+    //run game run method
+    //get index of column 
+    //move on that column
     
   }
 
