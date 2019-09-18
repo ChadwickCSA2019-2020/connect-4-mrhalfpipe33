@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.lang.Math;
 /**
  * Describe your basic strategy here.
  * @author <mrhalfpipe33 & JaredNachman>
@@ -41,8 +42,15 @@ public class MyAgent extends Agent {
    *
    */
   public void move() {
-    if (this.iCanWin() >=0) {
-      this.moveOnColumn(this.iCanWin);
+  	if (this.theyCanWin() >= 0) {
+  		this.moveOnColumn(this.theyCanWin());
+  	}
+    if (this.iCanWin() >= 0) {
+      this.moveOnColumn(this.iCanWin());
+    }
+    else {
+    //	this.moveOnColumn(Math.round(Math.random() * 7));
+    	this.moveOnColumn(random.nextInt(7));
     }
   }
 
@@ -111,27 +119,20 @@ public class MyAgent extends Agent {
    * @return the column that would allow the agent to win.
    */
   public int iCanWin() {
-    //make a copy of board
-    Connect4Game connect4GameCopy = new Connect4Game(myGame);
-    int winnableColumn = -1;
-    //make a new agent
-    MyAgent redAgent = new MyAgent(myGame, true);
-    //place a token in each column
-    for (int i = 0; i < 7; i++) {
-      redAgent.moveOnColumn(i);
-      // check if win 
-      if (connect4GameCopy.gameWon() != 'N') {
-        winnableColumn = i;
-        break;
-      }
-      // reset game board
+  	for (int i = 0; i < 7; i++) {
+  		Connect4Game connect4GameCopy = new Connect4Game(myGame);
+  		// make a new agent
+  		MyAgent testAgent = new MyAgent(connect4GameCopy, iAmRed);
+  		testAgent.moveOnColumn(i);
+  		// check if winnable column
+  		if (connect4GameCopy.gameWon() != 'N') {
+  			System.out.print(i);
+  			return i;
+  		}
+  		// reset game board
 
-    }
-    return winnableColumn;
-    //run game run method
-    //get index of column 
-    //move on that column
-    
+  	}
+  	return -1;
   }
 
   /**
@@ -144,7 +145,18 @@ public class MyAgent extends Agent {
    * @return the column that would allow the opponent to win.
    */
   public int theyCanWin() {
-    return 0;
+  	for (int i = 0; i < 7; i++) {
+  		Connect4Game connect4GameCopy = new Connect4Game(myGame);
+  		//make a new agent
+  		MyAgent testAgent = new MyAgent(myGame, iAmRed);
+  		testAgent.moveOnColumn(i);
+  		// check if winnable column
+  		if (connect4GameCopy.gameWon() != 'N') {
+  			return i;
+  		}
+  		// reset game board
+    }
+    return -1;
   }
 
   /**
