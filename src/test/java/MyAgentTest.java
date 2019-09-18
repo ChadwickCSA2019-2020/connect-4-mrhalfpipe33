@@ -156,7 +156,7 @@ public class MyAgentTest {
 			redAgent.moveOnColumn(i); 
 		}
 
-		assertEquals(0, yellowAgent.theyCanWin());
+		assertEquals(0, redAgent.theyCanWin());
 
 	} 
 

@@ -148,7 +148,7 @@ public class MyAgent extends Agent {
   	for (int i = 0; i < 7; i++) {
   		Connect4Game connect4GameCopy = new Connect4Game(myGame);
   		//make a new agent
-  		MyAgent testAgent = new MyAgent(myGame, iAmRed);
+  		MyAgent testAgent = new MyAgent(connect4GameCopy, !iAmRed);
   		testAgent.moveOnColumn(i);
   		// check if winnable column
   		if (connect4GameCopy.gameWon() != 'N') {
