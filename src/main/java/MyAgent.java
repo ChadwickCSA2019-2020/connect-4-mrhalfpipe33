@@ -46,26 +46,62 @@ public class MyAgent extends Agent {
 	 *
 	 */
 	public void move() {
-		if (this.theyCanWin() >= 0) {
-			this.moveOnColumn(this.theyCanWin());
-		}
-		else if (this.iCanWin() >= 0) {
+		if (this.iCanWin() >= 0) {
 			this.moveOnColumn(this.iCanWin());
 		}
+		else if (this.theyCanWin() >= 0) {
+			this.moveOnColumn(this.theyCanWin());
+		}
 		else {
+			/* ArrayList<Integer> columnsThatDontScrewMe = willIBeScrewed();
+				if (columnsThatDontScrewMe.get(3) != -1) {
+					this.moveOnColumn(3);
+				}
+				else if(columnsThatDontScrewMe.get(2) != -1) {
+					this.moveOnColumn(2);
+				}
+				else if(columnsThatDontScrewMe.get(4) != -1) {
+					this.moveOnColumn(4);
+				}
+				else if(columnsThatDontScrewMe.get(1) != -1) {
+					this.moveOnColumn(1);
+				}
+				else if(columnsThatDontScrewMe.get(5) != -1) {
+					this.moveOnColumn(5);
+				}
+				else if(columnsThatDontScrewMe.get(0) != -1) {
+					this.moveOnColumn(0);
+				}
+				else if(columnsThatDontScrewMe.get(6) != -1) {
+					this.moveOnColumn(6);
+				} */
+
+			for(int i = 0; i<7; i++){
+				double k = i/2;
+				int j = (int)Math.round(k);
+				j = j * (int)Math.pow(-1, i);
+				int move = 3 + j;
+				Connect4Column thisColumn = myGame.getColumn(move);
+				if (thisColumn.getIsFull() == false) {
+					this.moveOnColumn(move);
+					break;
+				}
+			}
+
 			// run for loop for columnsThatDontScrewMe values
 			// play random of this array unless -1
 			// if 3 is in array, play there
-		}
-		// delete this random move later
-		else {
+
+			// delete this random move later
+			/*else {
 			Connect4Column middleColumn = myGame.getColumn(3);
 			if (middleColumn.getIsFull() == false) {
 				this.playMiddleColumn();
 			}
 			else {
 				this.moveOnColumn(randomMove());
-			}
+			} */
+			//}
 		}
 	}
 
@@ -84,15 +120,14 @@ public class MyAgent extends Agent {
 	}
 
 	public ArrayList<Integer> willIBeScrewed() {
-		Connect4Game connect4GameCopy = new Connect4Game(myGame);
 		ArrayList<Integer> columnsThatDontScrewMe = new ArrayList<Integer>();
 		for (int i = 0; i < 7; i++) {
 			columnsThatDontScrewMe.add(i);
 		}
 		// make a new agent
-		MyAgent testAgentGonnaGetClapped = new MyAgent(connect4GameCopy, iAmRed);
-		//MyAgent testAgentGonnaClap = new MyAgent(connect4GameCopy, iAmRed);
 		for (int i = 0; i < 7; i++) {
+			Connect4Game connect4GameCopy = new Connect4Game(myGame);
+			MyAgent testAgentGonnaGetClapped = new MyAgent(connect4GameCopy, iAmRed);
 			testAgentGonnaGetClapped.moveOnColumn(i);
 			if (testAgentGonnaGetClapped.theyCanWin() > -1 ) {
 				columnsThatDontScrewMe.set(i, -1);
@@ -100,7 +135,7 @@ public class MyAgent extends Agent {
 		}
 		return columnsThatDontScrewMe;
 	}
-	
+
 	public void moveOnColumn(int columnNumber) {
 		// Find the top empty slot in the column
 		// If the column is full, lowestEmptySlot will be -1
