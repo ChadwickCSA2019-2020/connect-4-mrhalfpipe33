@@ -53,55 +53,23 @@ public class MyAgent extends Agent {
 			this.moveOnColumn(this.theyCanWin());
 		}
 		else {
-			/* ArrayList<Integer> columnsThatDontScrewMe = willIBeScrewed();
-				if (columnsThatDontScrewMe.get(3) != -1) {
-					this.moveOnColumn(3);
-				}
-				else if(columnsThatDontScrewMe.get(2) != -1) {
-					this.moveOnColumn(2);
-				}
-				else if(columnsThatDontScrewMe.get(4) != -1) {
-					this.moveOnColumn(4);
-				}
-				else if(columnsThatDontScrewMe.get(1) != -1) {
-					this.moveOnColumn(1);
-				}
-				else if(columnsThatDontScrewMe.get(5) != -1) {
-					this.moveOnColumn(5);
-				}
-				else if(columnsThatDontScrewMe.get(0) != -1) {
-					this.moveOnColumn(0);
-				}
-				else if(columnsThatDontScrewMe.get(6) != -1) {
-					this.moveOnColumn(6);
-				} */
-
+		
 			for(int i = 0; i<7; i++){
 				double k = i/2;
 				int j = (int)Math.round(k);
 				j = j * (int)Math.pow(-1, i);
 				int move = 3 + j;
-				Connect4Column thisColumn = myGame.getColumn(move);
-				if (thisColumn.getIsFull() == false) {
-					this.moveOnColumn(move);
-					break;
+				ArrayList<Integer> dontPlayHere = willIBeScrewed();
+				if (dontPlayHere.get(move) != -1) {
+					Connect4Column thisColumn = myGame.getColumn(move);
+					if (thisColumn.getIsFull() == false) {
+						// if index isn't negative 1, play there
+						this.moveOnColumn(move);
+						break;
+				}
+				
 				}
 			}
-
-			// run for loop for columnsThatDontScrewMe values
-			// play random of this array unless -1
-			// if 3 is in array, play there
-
-			// delete this random move later
-			/*else {
-			Connect4Column middleColumn = myGame.getColumn(3);
-			if (middleColumn.getIsFull() == false) {
-				this.playMiddleColumn();
-			}
-			else {
-				this.moveOnColumn(randomMove());
-			} */
-			//}
 		}
 	}
 
