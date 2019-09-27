@@ -39,14 +39,14 @@ public class MyAgentTest {
 
 		for (int i = 0; i < 3; i++) {
 			redAgent.moveOnColumn(2);
-			yellowAgent.moveOnColumn(1);   
+			yellowAgent.moveOnColumn(1);
 		}
 
 		assertEquals(2, redAgent.iCanWin());
 
 	}
 
-	// TODO: Write 2 test cases for testICanWinHorizontally 
+	// TODO: Write 2 test cases for testICanWinHorizontally
 	@Test
 	public void testICanWinHorizontallyBottomRow() {
 		MyAgent redAgent = new MyAgent(game, true);
@@ -54,7 +54,7 @@ public class MyAgentTest {
 		game.clearBoard();
 		for (int i = 1; i < 4; i++) {
 			redAgent.moveOnColumn(i);
-			yellowAgent.moveOnColumn(i); 
+			yellowAgent.moveOnColumn(i);
 		}
 
 		assertEquals(0, redAgent.iCanWin());
@@ -67,17 +67,17 @@ public class MyAgentTest {
 		MyAgent redAgent = new MyAgent(game, true);
 		MyAgent yellowAgent = new MyAgent(game, false);
 		game.clearBoard();
-		for (int i = 0; i < 2; i++) {	       
+		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 3; j++) {
 				redAgent.moveOnColumn(j);
-				yellowAgent.moveOnColumn(j); 
+				yellowAgent.moveOnColumn(j);
 			}
 		}
 		redAgent.moveOnColumn(5);
 		yellowAgent.moveOnColumn(3);
-		redAgent.moveOnColumn(3); 
+		redAgent.moveOnColumn(3);
 		yellowAgent.moveOnColumn(3);
-		redAgent.moveOnColumn(5); 
+		redAgent.moveOnColumn(5);
 
 		assertEquals(3, yellowAgent.iCanWin());
 
@@ -153,12 +153,12 @@ public class MyAgentTest {
 		game.clearBoard();
 		for (int i = 1; i < 4; i++) {
 			yellowAgent.moveOnColumn(i);
-			redAgent.moveOnColumn(i); 
+			redAgent.moveOnColumn(i);
 		}
 
 		assertEquals(0, redAgent.theyCanWin());
 
-	} 
+	}
 
 
 	// TODO: Write testTheyCanWinDiagonally
@@ -180,7 +180,7 @@ public class MyAgentTest {
 		yellowAgent.moveOnColumn(0);
 
 		assertEquals(4, yellowAgent.theyCanWin());
-	} 
+	}
 
 
 	// Tests you can win against a Beginner agent as Red
@@ -190,8 +190,8 @@ public class MyAgentTest {
 		Agent yellowAgent = new BeginnerAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -214,8 +214,8 @@ public class MyAgentTest {
 		Agent yellowAgent = new MyAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -238,8 +238,8 @@ public class MyAgentTest {
 		Agent yellowAgent = new RandomAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -255,15 +255,15 @@ public class MyAgentTest {
 		assertTrue(numberOfWins >= 45);
 	}
 
-	//Tests you can win against a Random agent as Red
+	// Tests you can win against a Random agent as Red
 	@Test
 	public void testYellowWinningRandomAgent() {
 		Agent redAgent = new RandomAgent(game, true);
 		Agent yellowAgent = new MyAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -283,15 +283,15 @@ public class MyAgentTest {
 
 	// BONUS TODO: Write testCases to play against IntermediateAgent
 
-	//Tests you can win against an Intermediate agent as Red
+	// Tests you can win against an Intermediate agent as Red
 	@Test
 	public void testYellowWinningIntermediateAgent() {
 		Agent redAgent = new IntermediateAgent(game, true);
 		Agent yellowAgent = new MyAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -307,15 +307,15 @@ public class MyAgentTest {
 		assertTrue(numberOfWins >= 45);
 	}
 
-	//Tests you can win against an Intermediate agent as Red
+	// Tests you can win against an Intermediate agent as Red
 	@Test
 	public void testRedWinningIntermediateAgent() {
 		Agent redAgent = new MyAgent(game, true);
 		Agent yellowAgent = new IntermediateAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -332,15 +332,15 @@ public class MyAgentTest {
 	}
 
 	// SUPER BONUS TODO: Write testCases to playAgainst AdvancedAgent
-	//Tests you can win against an Advanced agent as Red
+	// Tests you can win against an Advanced agent as Red
 	@Test
 	public void testYellowWinningAdvancedAgent() {
 		Agent redAgent = new AdvancedAgent(game, true);
 		Agent yellowAgent = new MyAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -356,15 +356,15 @@ public class MyAgentTest {
 		assertTrue(numberOfWins >= 45);
 	}
 
-	//Tests you can win against an Advanced agent as Red
+	// Tests you can win against an Advanced agent as Red
 	@Test
 	public void testRedWinningAdvancedAgent() {
 		Agent redAgent = new MyAgent(game, true);
 		Agent yellowAgent = new AdvancedAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -380,15 +380,15 @@ public class MyAgentTest {
 		assertTrue(numberOfWins >= 45);
 	}
 	// SUPER BONUS TODO: Write testCases to playAgainst BrilliantAgent
-//Tests you can win against an Brilliant agent as Red
+// Tests you can win against an Brilliant agent as Red
 	@Test
 	public void testYellowWinningBrilliantAgent() {
 		Agent redAgent = new BrilliantAgent(game, true);
 		Agent yellowAgent = new MyAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
@@ -404,15 +404,15 @@ public class MyAgentTest {
 		assertTrue(numberOfWins >= 45);
 	}
 
-	//Tests you can win against an Brilliant agent as Red
+	// Tests you can win against an Brilliant agent as Red
 	@Test
 	public void testRedWinningBrilliantAgent() {
 		Agent redAgent = new MyAgent(game, true);
 		Agent yellowAgent = new BrilliantAgent(game, false);
 		int numberOfWins = 0;
 		for (int i = 0; i < 50; i++) {
-			game.clearBoard(); 
-			while(!game.boardFull() && game.gameWon() == 'N') {
+			game.clearBoard();
+			while (!game.boardFull() && game.gameWon() == 'N') {
 				redAgent.move();
 				if (game.gameWon() != 'R') {
 					yellowAgent.move();
