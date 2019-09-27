@@ -49,12 +49,18 @@ public class MyAgent extends Agent {
     } else if (this.theyCanWin() >= 0) {
       this.moveOnColumn(this.theyCanWin());
     } else {
+      // run through each column of 0-6
       for (int i = 0; i < 7; i++) {
+        // Divide each column by two and set it equal to k
         double k = i / 2;
+        // Round k and set that equal to j
         int j = (int) Math.round(k);
+        // Multiply j by -1 and raise that to the power of i
         j = j * (int) Math.pow(-1, i);
+        // Add 3 to j and set that to move
         int move = 3 + j;
         ArrayList<Integer> dontPlayHere = willIBeScrewed();
+        // Check to see if the value stored as move does not equal -1
         if (dontPlayHere.get(move) != -1) {
           Connect4Column thisColumn = myGame.getColumn(move);
           if (!thisColumn.getIsFull()) {
@@ -171,7 +177,6 @@ public class MyAgent extends Agent {
       testAgent.moveOnColumn(i);
       // check if winnable column
       if (connect4GameCopy.gameWon() != 'N') {
-        System.out.print(i);
         return i;
       }
       // reset game board
